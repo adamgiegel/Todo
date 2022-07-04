@@ -4,7 +4,7 @@ function PaginationButtons({ dummyData, onNextClick, onPreviousClick }) {
 
     return (
         <>
-            {dummyData.length >= 5 ?
+            {dummyData.length >= 6 ?
                 <div>
                     <button className="addTaskButton" onClick={onNextClick}>Next</button>
                     <button className="addTaskButton" onClick={onPreviousClick}>Previous</button>

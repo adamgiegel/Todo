@@ -42,10 +42,17 @@ function App() {
   }
 
   const yesDelete = (id) => {
-    const updatedData = dummyData.filter(todos => {
-      return todos.id !== id
-    })
-    setDummyData(updatedData)
+    if (toggle) {
+      const updatedData = dummyData.filter(todos => {
+        return todos.id !== id
+      })
+      setDummyData(updatedData)
+    } else {
+      const updatedData = completedData.filter(todos => {
+        return todos.id !== id
+      })
+      setCompletedData(updatedData)
+    }
     setConfirmDelete(false)
     setShowModal(false)
   }
