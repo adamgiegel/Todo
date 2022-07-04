@@ -1,3 +1,47 @@
+# Todo App
+
+# Description:
+
+I decided to build a simple Todo app after taking a few code challenges.  I incorporated the features these code challenges were requesting.
+
+## Some of those features include:
+
+* Pagination - having the ability to only render a certain amount of data and then clicking on a "next" button to render the next set of data.  This also includes a "previous" button.
+* Displaying data in a usable way.
+* Adding/Deleting data.
+* Usage of React Hooks.
+* Using forms and inputs.
+* Managing state between components
+* Conditionally styling and/or rendering components
+
+## I also decided I wanted to add some additional features
+
+### Completed features...
+
+* The ability to sort todos by title and due date.
+* Having the capability to switch between completed and in progress todos.
+* Being able to Edit a todo.
+* Creating and using a modal with createPortal
+
+### In progess features...
+
+* Creating notifications that a todo is due soon.
+* Converting to use React and Typescript
+* Using a state management tool like Redux, Conext, or the useReducer hook.
+* Adding a calculator I made as an additional feature
+* Timestamp edits so the user knows when they edited a todo.
+
+### Bugs I noticed...
+
+* The edit form doesnt give the ability to add to data already in the form or to add additional notes.
+
+## After these features and bugs are complete my plans are to add....
+
+* Adding a login form that includes authentication.
+* Adding a navbar that is personalized for each use that is signed in.
+* Using a database for the data.
+* Utilizing node.js for the backend.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
