@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/Todo.css'
+import '../App.css'
 
 function TodoForm({ showModalMessage, markComplete, setTitle, setDueDate, setNotes, title, dueDate, notes, onSubmit, dummyData, editOpen, editObject, onSubmitEdit, todoValue, setTodoValue, handleDelete }) {
 
