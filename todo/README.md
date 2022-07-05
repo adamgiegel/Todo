@@ -35,8 +35,10 @@ Images of the project are located in the public folder under projectImages.
 * Adding a calculator I made as an additional feature
 * Timestamp edits so the user knows when they edited a todo.
 
-### Bugs I noticed...
+### Bugs and other updated needed I noticed...
 
+* Clean up CSS and make selector names more relevant to the where they are located.
+* Optimize CSS for mulitple media sizes and cross browser compatibility.
 * The edit form doesnt give the ability to add to data already in the form or to add additional notes.
 
 ## After these features and bugs are complete my plans are to add....
