@@ -4,9 +4,12 @@
 
 I decided to build a simple Todo app after taking a few code challenges.  I incorporated the features these code challenges were requesting.
 
+Images of the project are located in the public folder under projectImages.
+
 ## Some of those features include:
 
 * Pagination - having the ability to only render a certain amount of data and then clicking on a "next" button to render the next set of data.  This also includes a "previous" button.
+  - Must have 5 todo's for the buttons to appear.
 * Displaying data in a usable way.
 * Adding/Deleting data.
 * Usage of React Hooks.
@@ -21,7 +24,8 @@ I decided to build a simple Todo app after taking a few code challenges.  I inco
 * The ability to sort todos by title and due date.
 * Having the capability to switch between completed and in progress todos.
 * Being able to Edit a todo.
-* Creating and using a modal with createPortal
+* Creating and using a modal with createPortal.
+* Adding modal messages directing user what to do.
 
 ### In progess features...
 
