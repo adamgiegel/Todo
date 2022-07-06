@@ -40,7 +40,7 @@ Images of the project are located in the public folder under projectImages.
 * Clean up CSS and make selector names more relevant to the where they are located.
 * Optimize CSS for mulitple media sizes and cross browser compatibility.
 * The edit form doesnt give the ability to add to data already in the form or to add additional notes.
-* Next and Previous buttons dont work on "Completed"
+* If you complete todos on the second page the buttons disappear and you aren't able to get to the other todos.
 
 ## After these features and bugs are complete my plans are to add....
 
