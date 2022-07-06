@@ -30,7 +30,7 @@ Images of the project are located in the public folder under projectImages.
 ### In progess features...
 
 * Creating notifications that a todo is due soon.
-* ~~Converting to use React and Typescript
+* ~~Converting to use React and Typescript~~
 * Using a state management tool like Redux, Conext, or the useReducer hook.
 * Adding a calculator I made as an additional feature
 * Timestamp edits so the user knows when they edited a todo.
