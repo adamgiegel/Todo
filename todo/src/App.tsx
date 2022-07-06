@@ -1,38 +1,40 @@
 import React, { useState } from 'react'
 import './App.css';
-import TodoForm from '../src/components/TodoForm'
+import TodoForm from './components/TodoForm'
 import Todos from './components/Todos';
 import Select from './components/Select';
 import { Modal } from './components/Modal'
 import PaginationButtons from './components/PaginationButtons';
 
+
+
 function App() {
 
-  const [dummyData, setDummyData] = useState([])
-  const [completedData, setCompletedData] = useState([])
-  const [editObject, setEditObject] = useState({})
+  const [dummyData, setDummyData] = useState<{ id: number, title: string, dueDate: string, notes: string }[]>([])
+  const [completedData, setCompletedData] = useState<{ id: number, title: string, dueDate: string, notes: string }[]>([])
+  const [editObject, setEditObject] = useState<{ id: number, title: string, dueDate: string, notes: string }>({ id: 0, title: '', dueDate: '', notes: '' })
   const [title, setTitle] = useState('')
   const [dueDate, setDueDate] = useState('')
   const [notes, setNotes] = useState('')
   const [showModal, setShowModal] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false)
-  const [id, setId] = useState()
-  const [completeDate, setCompleteDate] = useState()
+  const [id, setId] = useState<number>()
+  const [completeDate, setCompleteDate] = useState<string>("")
   const [toggle, setToggle] = useState(true)
   const [sortValue, setSortValue] = useState('aToz')
   const [message, setMessage] = useState('')
-  const [editOpen, setOpenEdit] = useState(true)
+  const [editOpen, setOpenEdit] = useState<boolean>(true)
   const [currentNum, setCurrentNum] = useState(0)
   const [limit, setLimit] = useState(5)
 
-  const handleDelete = (id) => {
+  const handleDelete = (id: number) => {
     setMessage("Are you sure you want to delete?")
     setConfirmDelete(true)
     setShowModal(true)
     setId(id)
   }
 
-  const showModalMessage = (message) => {
+  const showModalMessage = (message: string) => {
     setMessage(message)
     setShowModal(true)
   }
@@ -41,14 +43,14 @@ function App() {
     setToggle(!toggle)
   }
 
-  const yesDelete = (id) => {
+  const yesDelete = (id: number) => {
     if (toggle) {
-      const updatedData = dummyData.filter(todos => {
+      const updatedData = dummyData.filter((todos: { id: number, title: string, dueDate: string, notes: string }) => {
         return todos.id !== id
       })
       setDummyData(updatedData)
     } else {
-      const updatedData = completedData.filter(todos => {
+      const updatedData = completedData.filter((todos: { id: number, title: string, dueDate: string, notes: string }) => {
         return todos.id !== id
       })
       setCompletedData(updatedData)
@@ -62,7 +64,7 @@ function App() {
     setShowModal(false)
   }
 
-  const onSubmit = (e, title, dueDate, notes) => {
+  const onSubmit = (e: React.SyntheticEvent, title: string, dueDate: string, notes: string) => {
     e.preventDefault()
     if (title === '' || dueDate === '' || notes === '') {
       setMessage("All fields must have values.")
@@ -80,7 +82,7 @@ function App() {
     }
   }
 
-  const onSubmitEdit = (e, id, title, dueDate, notes) => {
+  const onSubmitEdit = (e: React.SyntheticEvent, id: number, title: string, dueDate: string, notes: string) => {
     e.preventDefault()
     if (title === '' || dueDate === '' || notes === '') {
       setMessage("All fields must have values.")
@@ -92,7 +94,7 @@ function App() {
         dueDate: dueDate,
         notes: notes
       }
-      var foundIndex = dummyData.findIndex(x => x.id == editedData.id);
+      var foundIndex = dummyData.findIndex((x: { id: number }) => x.id == editedData.id);
       dummyData[foundIndex] = editedData;
       setTitle('')
       setDueDate('')
@@ -101,9 +103,9 @@ function App() {
     }
   }
 
-  const markComplete = (e, id) => {
+  const markComplete = (e: React.SyntheticEvent, id: number) => {
     e.preventDefault()
-    dummyData.map(todo => {
+    dummyData.map((todo: { id: number, title: string, dueDate: string, notes: string }) => {
       if (todo.id === id) {
         setCompletedData([...completedData, todo])
       }
@@ -117,7 +119,7 @@ function App() {
     setOpenEdit(true)
   }
 
-  const handleEdit = (id, title, dueDate, notes) => {
+  const handleEdit = (id: number, title: string, dueDate: string, notes: string) => {
     setOpenEdit(false)
     setEditObject({
       id: id,
@@ -127,10 +129,10 @@ function App() {
     })
   }
 
-  const handleSort = (e) => {
+  const handleSort = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSortValue(e.target.value)
     if (toggle) {
-      let newData = dummyData.sort((a, b) => {
+      let newData: { id: number, title: string, dueDate: string, notes: string }[] = dummyData.sort((a: { id: number, title: string, dueDate: string, notes: string }, b: { id: number, title: string, dueDate: string, notes: string }): any => {
         let fa = a.title.toLowerCase();
         let fb = b.title.toLowerCase();
         if (e.target.value === 'zToa') {
@@ -153,7 +155,7 @@ function App() {
       })
       setDummyData(newData)
     } else {
-      let newData = completedData.sort((a, b) => {
+      let newData: { id: number, title: string, dueDate: string, notes: string }[] = completedData.sort((a: { id: number, title: string, dueDate: string, notes: string }, b: { id: number, title: string, dueDate: string, notes: string }): any => {
         let fa = a.title.toLowerCase();
         let fb = b.title.toLowerCase();
         if (e.target.value === 'zToa') {
@@ -197,9 +199,7 @@ function App() {
       <div>
         <TodoForm
           editOpen={editOpen}
-          handleDelete={handleDelete}
           onSubmit={onSubmit}
-          dummyData={dummyData}
           onSubmitEdit={onSubmitEdit}
           editObject={editObject}
           title={title}
@@ -209,14 +209,12 @@ function App() {
           setDueDate={setDueDate}
           setNotes={setNotes}
           markComplete={markComplete}
-          yesDelete={yesDelete}
-          noDelete={noDelete}
           showModalMessage={showModalMessage} />
         {editOpen ?
           <div>
             <Select toggle={toggle} toggleList={toggleList} sortValue={sortValue} handleSort={handleSort} />
             <Todos currentNum={currentNum} limit={limit} toggle={toggle} completeDate={completeDate} completedData={completedData} handleEdit={handleEdit} handleDelete={handleDelete} dummyData={dummyData} />
-            <PaginationButtons dummyData={dummyData} onNextClick={onNextClick} onPreviousClick={onPreviousClick} />
+            <PaginationButtons completedData={completedData} dummyData={dummyData} onNextClick={onNextClick} onPreviousClick={onPreviousClick} />
           </div>
           : <></>}
       </div>
