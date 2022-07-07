@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.css';
 import TodoForm from './components/TodoForm'
 import Todos from './components/Todos';
 import Select from './components/Select';
 import { Modal } from './components/Modal'
-import PaginationButtons from './components/PaginationButtons';
-
+import Pagination from './components/Pagination';
 
 
 function App() {
@@ -26,6 +25,9 @@ function App() {
   const [editOpen, setOpenEdit] = useState<boolean>(true)
   const [currentNum, setCurrentNum] = useState(0)
   const [limit, setLimit] = useState(5)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [newNum, setNewNum] = useState(1)
+  const [lastToggle, setLastToggle] = useState(false)
 
   const handleDelete = (id: number) => {
     setMessage("Are you sure you want to delete?")
@@ -185,6 +187,7 @@ function App() {
       setCurrentNum(currentNum + 5)
       setLimit(limit + 5)
     }
+    setCurrentPage(currentPage + 1)
   }
 
   const onPreviousClick = () => {
@@ -192,7 +195,27 @@ function App() {
       setCurrentNum(currentNum - 5)
       setLimit(limit - 5)
     }
+    setCurrentPage(currentPage - 1)
   }
+
+  const onFirstClick = () => {
+    setCurrentNum(0)
+    setLimit(5)
+  }
+
+  const onLastClick = () => {
+    let page = dummyData.length / 5
+    let pageNum = Math.ceil(page)
+    setLastToggle(true)
+    setLimit(pageNum * 5)
+  }
+
+  useEffect(() => {
+    if (lastToggle === true) {
+      setCurrentNum(limit - 5)
+    }
+  }, [limit])
+
 
   return (
     <div className="App">
@@ -214,7 +237,7 @@ function App() {
           <div>
             <Select toggle={toggle} toggleList={toggleList} sortValue={sortValue} handleSort={handleSort} />
             <Todos currentNum={currentNum} limit={limit} toggle={toggle} completeDate={completeDate} completedData={completedData} handleEdit={handleEdit} handleDelete={handleDelete} dummyData={dummyData} />
-            <PaginationButtons completedData={completedData} dummyData={dummyData} onNextClick={onNextClick} onPreviousClick={onPreviousClick} />
+            <Pagination onFirstClick={onFirstClick} onLastClick={onLastClick} completedData={completedData} dummyData={dummyData} onNextClick={onNextClick} onPreviousClick={onPreviousClick} />
           </div>
           : <></>}
       </div>

@@ -1,27 +1,20 @@
 import React from 'react';
 
-export interface Props {
-    dummyData: { id: number, title: string, dueDate: string, notes: string }[];
-    completedData: { id: number, title: string, dueDate: string, notes: string }[];
+interface Props {
     onNextClick: () => void;
     onPreviousClick: () => void;
+    onFirstClick: () => void;
+    onLastClick: () => void;
 }
 
 function PaginationButtons(props: Props) {
-
     return (
-        <>
-            {props.dummyData.length >= 5 ?
-                <div>
-                    <button className="addTaskButton" onClick={props.onNextClick}>Next</button>
-                    <button className="addTaskButton" onClick={props.onPreviousClick}>Previous</button>
-                </div> : <></>}
-            {props.completedData.length >= 5 ?
-                <div>
-                    <button className="addTaskButton" onClick={props.onNextClick}>Next</button>
-                    <button className="addTaskButton" onClick={props.onPreviousClick}>Previous</button>
-                </div> : <></>}
-        </>
+        <div>
+            <button className="addTaskButton" onClick={props.onFirstClick}>First</button>
+            <button className="addTaskButton" onClick={props.onNextClick}>Next</button>
+            <button className="addTaskButton" onClick={props.onPreviousClick}>Previous</button>
+            <button className="addTaskButton" onClick={props.onLastClick}>Last</button>
+        </div>
     );
 }
 
