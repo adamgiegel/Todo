@@ -8,6 +8,8 @@ export interface Props {
     onPreviousClick: () => void;
     onFirstClick: () => void;
     onLastClick: () => void;
+    pageNums?: number[];
+    goToPage: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 function Pagination(props: Props) {
@@ -20,7 +22,9 @@ function Pagination(props: Props) {
                         onNextClick={props.onNextClick}
                         onPreviousClick={props.onPreviousClick}
                         onFirstClick={props.onFirstClick}
-                        onLastClick={props.onLastClick} />
+                        onLastClick={props.onLastClick}
+                        pageNums={props.pageNums}
+                        goToPage={props.goToPage} />
                 </div> : <></>}
             {props.completedData.length >= 6 ?
                 <div>
@@ -28,7 +32,9 @@ function Pagination(props: Props) {
                         onNextClick={props.onNextClick}
                         onPreviousClick={props.onPreviousClick}
                         onFirstClick={props.onFirstClick}
-                        onLastClick={props.onLastClick} />
+                        onLastClick={props.onLastClick}
+                        pageNums={props.pageNums}
+                        goToPage={props.goToPage} />
                 </div> : <></>}
         </>
     );

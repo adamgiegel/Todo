@@ -26,8 +26,7 @@ function App() {
   const [currentNum, setCurrentNum] = useState(0)
   const [limit, setLimit] = useState(5)
   const [currentPage, setCurrentPage] = useState(1)
-  const [newNum, setNewNum] = useState(1)
-  const [lastToggle, setLastToggle] = useState(false)
+  const [pageNums, setPageNums] = useState<number[]>()
 
   const handleDelete = (id: number) => {
     setMessage("Are you sure you want to delete?")
@@ -81,6 +80,7 @@ function App() {
       setTitle('')
       setDueDate('')
       setNotes('')
+      pageNumbers()
     }
   }
 
@@ -206,16 +206,34 @@ function App() {
   const onLastClick = () => {
     let page = dummyData.length / 5
     let pageNum = Math.ceil(page)
-    setLastToggle(true)
     setLimit(pageNum * 5)
+    let current = limit - 5
+    setCurrentNum(current)
   }
 
   useEffect(() => {
-    if (lastToggle === true) {
-      setCurrentNum(limit - 5)
-    }
+    setCurrentNum(limit - 5)
   }, [limit])
 
+  const pageNumbers = () => {
+    let dummyLength = dummyData.length + 1
+    if (dummyData.length >= 1) {
+      let numberOfPages = Math.ceil(dummyLength / 5)
+      let pageArray = []
+      for (let i = 1; i <= numberOfPages; i++) {
+        pageArray.push(i)
+      }
+      setPageNums(pageArray)
+    }
+  }
+
+  const goToPage = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const input = e.target as HTMLElement;
+    let pages: number = Number(input.innerText) * 5
+    setLimit(pages)
+    let current = pages - 5
+    setCurrentNum(current)
+  }
 
   return (
     <div className="App">
@@ -237,7 +255,7 @@ function App() {
           <div>
             <Select toggle={toggle} toggleList={toggleList} sortValue={sortValue} handleSort={handleSort} />
             <Todos currentNum={currentNum} limit={limit} toggle={toggle} completeDate={completeDate} completedData={completedData} handleEdit={handleEdit} handleDelete={handleDelete} dummyData={dummyData} />
-            <Pagination onFirstClick={onFirstClick} onLastClick={onLastClick} completedData={completedData} dummyData={dummyData} onNextClick={onNextClick} onPreviousClick={onPreviousClick} />
+            <Pagination goToPage={goToPage} pageNums={pageNums} onFirstClick={onFirstClick} onLastClick={onLastClick} completedData={completedData} dummyData={dummyData} onNextClick={onNextClick} onPreviousClick={onPreviousClick} />
           </div>
           : <></>}
       </div>
