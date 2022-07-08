@@ -10,6 +10,7 @@ Images of the project are located in the public folder under projectImages.
 
 * Pagination - having the ability to only render a certain amount of data and then clicking on a "next" button to render the next set of data.  This also includes a "previous" button.
   - Must have 5 todo's for the buttons to appear.
+* Pagination page numbers to easily page through todos.
 * Displaying data in a usable way.
 * Adding/Deleting data.
 * Usage of React Hooks.
